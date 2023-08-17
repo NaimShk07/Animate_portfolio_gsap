@@ -20,9 +20,16 @@ html {
 	border-radius: 50%;
 	z-index: 9999;
 	transform: translate(-50%, -50%);
-	transition: transform .3s ease-out;
+	transition: transform 0.3s ease-out;
 }
-
+.bounding{
+	width: fit-content;
+	/* background-color: red; */
+	overflow: hidden;
+}
+.boundingelem{
+	transform: translateY(100%);
+}
 #main {
 	width: 100%;
 	/* position: relative; */
@@ -47,10 +54,6 @@ html {
 	display: flex;
 	justify-content: space-between;
 	padding: 27px 2.5vw;
-	position: sticky;
-	width: 100%;
-	top: 0;
-	z-index: 9;
 	background-color: black;
 }
 
@@ -76,10 +79,20 @@ html {
 	line-height: 1;
 	text-transform: uppercase;
 }
+#heading .headingtext h1 {
+	opacity: 0.7;
+	font-size: 10vw;
+	line-height: 1;
+	text-transform: uppercase;
+}
 
 #heading .headingtext {
-	margin-left: 130px;
+	padding-left: 130px;
 	width: fit-content;
+	background-color: black;
+	display: flex;
+	flex-direction: column;
+	align-items: end;
 }
 
 #heading .headingtext h4 {
@@ -89,11 +102,14 @@ html {
 }
 
 #btm-heading {
-	margin-top: 100px;
+	padding-top: 100px;
 	margin-right: 35px;
-	text-align: right;
 	line-height: 2;
 	text-transform: uppercase;
+	background-color: black;
+	display: flex;
+	flex-direction: column;
+	align-items: end;
 }
 #home-btm {
 	display: flex;
@@ -216,8 +232,18 @@ html {
 	text-decoration: none;
 	border-radius: 100px;
 }
-#about img {
+#about #aboutimg {
 	width: 250px;
+	overflow: hidden;
+	border-radius: 50%;
+}
+#about img {
+	width: 100%;
+	filter: grayscale(100%);
+	transition: all .5s ease;
+}
+#about img:hover{
+	filter: grayscale(0);
 }
 #subscribe {
 	padding: 2.5vw;

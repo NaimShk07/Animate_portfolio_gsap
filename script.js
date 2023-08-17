@@ -48,7 +48,6 @@ function circleCursor() {
    const follower = document.querySelector('#circle-cursor');
    let mouseX = 0, mouseY = 0;
 
-
    document.addEventListener('mousemove', (event) => {
       mouseX = event.clientX;
       mouseY = event.clientY;
@@ -61,7 +60,22 @@ function circleCursor() {
    animate();
 
 }
-circleCursor()
+circleCursor();
+
+
+function firstPageAnim() {
+   var tl = gsap.timeline();
+
+   tl.to(".boundingelem", {
+         y: 0,
+         ease: Expo.easeInOut,
+         duration: 2,   
+         stagger: .2
+
+      });
+
+}
+firstPageAnim()
 
 
 
