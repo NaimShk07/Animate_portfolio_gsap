@@ -20,14 +20,14 @@ html {
 	border-radius: 50%;
 	z-index: 9999;
 	transform: translate(-50%, -50%);
-	transition: transform 0.3s ease-out;
+	transition: transform 0.2s ease-out;
 }
-.bounding{
+.bounding {
 	width: fit-content;
 	/* background-color: red; */
 	overflow: hidden;
 }
-.boundingelem{
+.boundingelem {
 	transform: translateY(100%);
 }
 #main {
@@ -171,10 +171,12 @@ html {
 }
 
 #page2 #elems .box img {
-	position: absolute;
-	z-index: 9;
+	opacity: 0;
+	pointer-events: none;
 	height: 140%;
-	display: none;
+	z-index: 999;
+	position: absolute;
+	transform: translate(-50%, -50%);
 }
 
 .boxlast {
@@ -240,9 +242,9 @@ html {
 #about img {
 	width: 100%;
 	filter: grayscale(100%);
-	transition: all .5s ease;
+	transition: all 0.5s ease;
 }
-#about img:hover{
+#about img:hover {
 	filter: grayscale(0);
 }
 #subscribe {

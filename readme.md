@@ -29,3 +29,7 @@ function circleCursor() {
 }
 circleCursor();
 ````
+
+dets.clientX
+dets.clientY
+elem.getBoundingClientRect()

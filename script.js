@@ -1,3 +1,5 @@
+var timeout;
+
 function loco() {
    gsap.registerPlugin(ScrollTrigger);
 
@@ -33,49 +35,100 @@ function loco() {
 
 
 }
-loco();
-
-// function circleCursor(){
-//    window.addEventListener("mousemove",function (dets) {
-//       document.querySelector('#circle-cursor').style.transform=`translate(${dets.clientX}px,${dets.clientY}px)`
-//      
-//    })
-
-// }
-// circleCursor()
-
-function circleCursor() {
-   const follower = document.querySelector('#circle-cursor');
-   let mouseX = 0, mouseY = 0;
-
-   document.addEventListener('mousemove', (event) => {
-      mouseX = event.clientX;
-      mouseY = event.clientY;
-   });
-
-   const updateFollowerPosition = () => follower.style.transform = `translate(${mouseX - follower.clientWidth / 2}px, ${mouseY - follower.clientHeight / 2}px)`;
-
-   const animate = () => (updateFollowerPosition(), requestAnimationFrame(animate));
-
-   animate();
-
-}
-circleCursor();
-
 
 function firstPageAnim() {
    var tl = gsap.timeline();
 
    tl.to(".boundingelem", {
-         y: 0,
+      y: 0,
+      ease: Expo.easeInOut,
+      duration: 2,
+      stagger: .2
+
+   })
+      .from('#home-btm', {
+         opacity: 0,
          ease: Expo.easeInOut,
-         duration: 2,   
-         stagger: .2
+         duration: 1.5,
+         delay: -1.3,
 
       });
 
 }
-firstPageAnim()
+
+function skewcircle() {
+   var xscale = 1;
+   var yscale = 1;
+
+   var xPrev = 0;
+   var yPrev = 0;
+
+   window.addEventListener('mousemove', function (dets) {
+      clearTimeout(timeout);
+
+      var xDiff = dets.clientX - xPrev;// currentVal - prevVal
+      var yDiff = dets.clientY - yPrev;
+
+      xscale = gsap.utils.clamp(0.8, 1.2, xDiff);
+      yscale = gsap.utils.clamp(0.8, 1.2, yDiff);
+
+      yPrev = dets.clientY;
+      xPrev = dets.clientX;// updating the values
+
+      circleCursor(xscale, yscale);
+
+      timeout = setTimeout(function () {
+         document.querySelector('#circle-cursor').style.transform = `translate(${dets.clientX - 6}px,${dets.clientY - 5}px) scale(1,1)`;
+
+
+      }, 100);
+
+   });
+
+
+}
+
+function circleCursor(xscale, yscale) {
+   window.addEventListener("mousemove", function (dets) {
+      let mouse = document.querySelector('#circle-cursor');
+      mouse.style.transform = `translate(${dets.clientX - 6}px,${dets.clientY - 5}px) scale(${xscale},${yscale})`;
+
+   });
+
+}
+
+function mouseImg() {
+   let elems = document.querySelectorAll('.box');
+   elems.forEach(function (value) {
+      value.addEventListener('mousemove', function (dets) {
+         var prev = 0;
+
+         var diffx = dets.clientX - prev;
+         prev = dets.clientX;
+
+
+         var diff = dets.clientY - value.getBoundingClientRect().top;
+
+         gsap.to(value.querySelector('img'), {
+            opacity: 1,
+            ease: Power1,
+            top: diff,
+            left: dets.clientX,
+            rotate: diffx/50,
+         });
+      });
+
+   });
+
+
+}
+mouseImg();
+
+loco();
+firstPageAnim();
+skewcircle();
+circleCursor();
+
 
 
 
