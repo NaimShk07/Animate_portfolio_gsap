@@ -64,7 +64,7 @@ function firstPageAnim() {
       y: 0,
       ease: Expo.easeInOut,
       duration: 2,
-      delay:2,
+      delay: 2,
       stagger: .2
 
    })
@@ -167,11 +167,16 @@ let sideNav = document.querySelector('#side-nav');
 let mainpage = document.querySelector('#home');
 
 btn.addEventListener('click', (e) => {
-   sideNav.classList.toggle("hidden");   
+   sideNav.classList.toggle("hidden");
 });
 closebtn.addEventListener('click', () => {
-   sideNav.classList.toggle("hidden");   
+   sideNav.classList.toggle("hidden");
 });
+
+let time = document.querySelector('#time');
+time.innerHTML = `${new Date().toTimeString().slice(0, 5)} ${new Date().toLocaleTimeString().slice(8, 11)}`;
+
+
 
 
 

@@ -15,7 +15,7 @@
 }
 ```
 
-````
+```
 function circleCursor() {
    const follower = document.querySelector('#circle-cursor');
    let mouseX = 0, mouseY = 0;
@@ -28,24 +28,29 @@ function circleCursor() {
    animate();
 }
 circleCursor();
-````
+```
 
-dets.clientX
-dets.clientY
-elem.getBoundingClientRect()
-gsap.utils.clamp(min,max,varname)
+2. dets.clientX
+1. dets.clientY
+1. elem.getBoundingClientRect()
+1. gsap.utils.clamp(min,max,varname)
+1. pointer-events:none
 
-tl.to(".boundingelem", {
-      y: 0,
-      ease: Expo.easeInOut,
-      duration: 2,
-      stagger: .2
-
-   })
-      .from('#home-btm', {
-         opacity: 0,
+1. ```
+   tl.to(".boundingelem", {
+         y: 0,
          ease: Expo.easeInOut,
-         duration: 1.5,
-         delay: -1.3,
+         duration: 2,
+         stagger: .2
 
-      });
+      })
+         .from('#home-btm', {
+            opacity: 0,
+            ease: Expo.easeInOut,
+            duration: 1.5,
+            delay: -1.3,
+
+         });
+
+
+   ```
