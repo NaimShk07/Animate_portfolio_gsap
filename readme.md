@@ -33,3 +33,19 @@ circleCursor();
 dets.clientX
 dets.clientY
 elem.getBoundingClientRect()
+gsap.utils.clamp(min,max,varname)
+
+tl.to(".boundingelem", {
+      y: 0,
+      ease: Expo.easeInOut,
+      duration: 2,
+      stagger: .2
+
+   })
+      .from('#home-btm', {
+         opacity: 0,
+         ease: Expo.easeInOut,
+         duration: 1.5,
+         delay: -1.3,
+
+      });

@@ -36,6 +36,27 @@ function loco() {
 
 }
 
+function reloaderPage() {
+   window.addEventListener('load', function () {
+      let reloader = document.querySelector('#reloader');
+      let counter = document.querySelector('#counter');
+      let num = 0;
+      let settimer = setInterval(() => {
+         counter.innerHTML = num;
+         num++;
+         if (num > 100) {
+            clearInterval(settimer);
+
+         }
+
+      }, 15);
+      setTimeout(() => {
+         reloader.style.top = '-100%';
+      }, 2000);
+   });
+
+}
+
 function firstPageAnim() {
    var tl = gsap.timeline();
 
@@ -43,6 +64,7 @@ function firstPageAnim() {
       y: 0,
       ease: Expo.easeInOut,
       duration: 2,
+      delay:2,
       stagger: .2
 
    })
@@ -100,21 +122,29 @@ function circleCursor(xscale, yscale) {
 function mouseImg() {
    let elems = document.querySelectorAll('.box');
    elems.forEach(function (value) {
+      var diff_rotate = 0;
+      var prev = 0;
+
       value.addEventListener('mousemove', function (dets) {
-         var prev = 0;
-
-         var diffx = dets.clientX - prev;
+         var diff_rotate = dets.clientX - prev;  //rotate here is basically difference of prev and current location
          prev = dets.clientX;
-
 
          var diff = dets.clientY - value.getBoundingClientRect().top;
 
          gsap.to(value.querySelector('img'), {
             opacity: 1,
-            ease: Power1,
+            ease: Power3,
             top: diff,
             left: dets.clientX,
-            rotate: diffx/50,
+            rotate: gsap.utils.clamp(-20, 20, diff_rotate),
+         });
+
+      });
+      value.addEventListener('mouseleave', function (dets) {
+         gsap.to(value.querySelector('img'), {
+            opacity: 0,
+            ease: Power3,
+            duration: 0.5,
          });
       });
 
@@ -125,9 +155,24 @@ function mouseImg() {
 mouseImg();
 
 loco();
+reloaderPage();
 firstPageAnim();
 skewcircle();
 circleCursor();
+
+//side bar
+let btn = document.querySelector("#sidenav-btn");
+let closebtn = document.querySelector("#close");
+let sideNav = document.querySelector('#side-nav');
+let mainpage = document.querySelector('#home');
+
+btn.addEventListener('click', (e) => {
+   sideNav.classList.toggle("hidden");   
+});
+closebtn.addEventListener('click', () => {
+   sideNav.classList.toggle("hidden");   
+});
+
 
 
 
