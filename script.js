@@ -155,8 +155,8 @@ function mouseImg() {
 mouseImg();
 
 loco();
-reloaderPage();
 firstPageAnim();
+reloaderPage();
 skewcircle();
 circleCursor();
 
