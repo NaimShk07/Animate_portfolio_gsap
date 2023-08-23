@@ -13,15 +13,20 @@ html {
 	background-color: black;
 }
 #circle-cursor {
-	height: 13px;
-	width: 13px;
+	height: 15px;
+	width: 15px;
 	background-color: white;
+	color: black;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	position: absolute;
 	border-radius: 50%;
 	z-index: 10;
 	pointer-events: none;
+	
 	transform: translate(-50%, -50%);
-	transition: transform 0.2s ease-out;
+	transition: all 0.2s ease-out;
 }
 .bounding {
 	width: fit-content;
@@ -40,13 +45,13 @@ html {
 	background-color: #a3a3a3;
 	height: 100vh;
 	width: 100%;
-	position: absolute;
-	top: 0;
-	z-index: 1;
+	position: fixed;
+	/* top: 0; */
+	z-index: 2;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	transition: all 2s ease-in-out;
+	transition: all 1s ease-in-out;
 }
 .container {
 	display: flex;
@@ -93,25 +98,24 @@ html {
 
 #home {
 	height: 100vh;
+	padding-top: 80px;
 	width: 100%;
-	background-color: black;
+	/* background-color: blue; */
 	position: relative;
 }
-#home > #side-nav {
+#side-nav {
 	background-color: white;
-	position: absolute;
+	position: fixed;
+	top: 0;
 	height: 100vh;
 	width: 100vw;
-	z-index: -1;
-	/* left: 60%; */
 	left: 60%;
-	/* padding: 100px; */
 	padding: 20px 80px;
 
-	z-index: 1;
+	z-index: 3;
 	transition: all ease-in-out 0.7s;
 }
-#home > #side-nav div{
+#side-nav div {
 	padding-bottom: 70px;
 	width: 450px;
 	/* background-color: blue; */
@@ -119,18 +123,18 @@ html {
 	text-align: right;
 	cursor: pointer;
 }
-#home > #side-nav > #first-side {
+#side-nav > #first-side {
 	color: black;
 	/* padding: 150px 80px; */
 }
-#home > #side-nav > #first-side h1 {
+#side-nav > #first-side h1 {
 	color: black;
 	margin-bottom: 20px;
 	cursor: pointer;
 	font-weight: 100;
 	font-size: 60px;
 }
-#home > #side-nav #bottom-side {
+#side-nav #bottom-side {
 	color: black;
 	display: flex;
 	font-weight: 100;
@@ -139,12 +143,11 @@ html {
 	margin-top: 55px;
 	z-index: 10;
 }
-#home > #side-nav li {
+#side-nav li {
 	list-style: none;
 	color: black;
 	text-transform: uppercase;
 	cursor: pointer;
-
 }
 .hidden {
 	left: 100% !important;
@@ -161,6 +164,9 @@ html {
 	justify-content: space-between;
 	padding: 27px 2.5vw;
 	background-color: black;
+	position: fixed;
+	z-index: 1;
+	width: 100%;
 }
 
 #nav a {
@@ -173,7 +179,6 @@ html {
 	text-transform: uppercase;
 	cursor: pointer;
 }
-
 
 #heading {
 	margin-top: 80px;
@@ -265,6 +270,7 @@ html {
 	width: 89%;
 	/* background-color: red; */
 	margin-left: 2.5vw;
+	cursor: pointer;
 }
 
 #page2 #elems .box {
@@ -341,6 +347,10 @@ html {
 	text-decoration: none;
 	border-radius: 100px;
 }
+#abouttext a:hover {
+	background-color: white;
+	color: black;
+}
 #about #aboutimg {
 	width: 250px;
 	overflow: hidden;
@@ -369,7 +379,7 @@ html {
 #footer {
 	padding: 20px 2.5vw;
 	display: flex;
-	align-items: center;
+	/* align-items: center; */
 	justify-content: space-between;
 	flex-wrap: wrap;
 	gap: 10px;

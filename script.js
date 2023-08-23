@@ -1,4 +1,6 @@
 var timeout;
+let mouse = document.querySelector('#circle-cursor');
+
 
 function loco() {
    gsap.registerPlugin(ScrollTrigger);
@@ -51,7 +53,7 @@ function reloaderPage() {
 
       }, 15);
       setTimeout(() => {
-         reloader.style.top = '-100%';
+         reloader.style.transform = "translateY(-100%)";
       }, 2000);
    });
 
@@ -64,7 +66,7 @@ function firstPageAnim() {
       y: 0,
       ease: Expo.easeInOut,
       duration: 2,
-      delay: 2,
+      delay: 2.3,
       stagger: .2
 
    })
@@ -100,7 +102,7 @@ function skewcircle() {
       circleCursor(xscale, yscale);
 
       timeout = setTimeout(function () {
-         document.querySelector('#circle-cursor').style.transform = `translate(${dets.clientX - 6}px,${dets.clientY - 5}px) scale(1,1)`;
+         document.querySelector('#circle-cursor').style.transform = `translate(${dets.clientX - 7}px,${dets.clientY - 7}px) scale(1,1)`;
 
 
       }, 100);
@@ -110,10 +112,9 @@ function skewcircle() {
 
 }
 
-function circleCursor(xscale, yscale) {
+function circleCursor(xscale = 1, yscale = 1) {
    window.addEventListener("mousemove", function (dets) {
-      let mouse = document.querySelector('#circle-cursor');
-      mouse.style.transform = `translate(${dets.clientX - 6}px,${dets.clientY - 5}px) scale(${xscale},${yscale})`;
+      mouse.style.transform = `translate(${dets.clientX - 7}px,${dets.clientY - 7}px) scale(${xscale},${yscale})`;
 
    });
 
@@ -129,18 +130,40 @@ function mouseImg() {
          var diff_rotate = dets.clientX - prev;  //rotate here is basically difference of prev and current location
          prev = dets.clientX;
 
-         var diff = dets.clientY - value.getBoundingClientRect().top;
+         var diffY = dets.clientY - value.getBoundingClientRect().top;
+         var diffX = dets.clientX - value.getBoundingClientRect().left;
 
          gsap.to(value.querySelector('img'), {
             opacity: 1,
             ease: Power3,
-            top: diff,
-            left: dets.clientX,
+            top: diffY,
+            left: diffX,
             rotate: gsap.utils.clamp(-20, 20, diff_rotate),
          });
 
       });
+      value.addEventListener('mouseenter', (dets) => {
+         gsap.to(mouse, {
+            height: '70px',
+            width: '70px',
+            top:"-30px",
+            left:"-28px",
+            textContent: 'view',
+            opacity: .9,
+            ease: Power3
+         });
+
+      });
       value.addEventListener('mouseleave', function (dets) {
+         gsap.to(mouse, {
+            height: '15px',
+            width: '15px',
+            textContent: '',
+            top:"0px",
+            left:"0px",
+            opacity: 1,
+            ease: Power3
+         });
          gsap.to(value.querySelector('img'), {
             opacity: 0,
             ease: Power3,
@@ -152,13 +175,14 @@ function mouseImg() {
 
 
 }
-mouseImg();
 
 loco();
 firstPageAnim();
 reloaderPage();
 skewcircle();
 circleCursor();
+mouseImg();
+
 
 //side bar
 let btn = document.querySelector("#sidenav-btn");

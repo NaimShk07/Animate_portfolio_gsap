@@ -54,3 +54,6 @@ circleCursor();
 
 
    ```
+
+8. ease:Power1,2,3 (in gsap)
+9. gsap.to(var_name,{ })
